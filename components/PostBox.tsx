@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { useMutation } from "@apollo/client";
 import { ADD_POST, ADD_SUBREDDIT } from "../graphql/mutations";
 import client from "../apollo-client";
-import { GET_SUBREDDIT_BY_TOPIC } from "../graphql/queries";
+import { GET_ALL_POST, GET_SUBREDDIT_BY_TOPIC } from "../graphql/queries";
 import toast from "react-hot-toast";
 
 type FormData = {
@@ -19,7 +19,9 @@ type FormData = {
 function PostBox() {
   const { data: session } = useSession();
   const [imageBoxOpen, setImageBoxOpen] = useState(false);
-  const [addPost] = useMutation(ADD_POST);
+  const [addPost] = useMutation(ADD_POST, {
+    refetchQueries: [GET_ALL_POST, "getPostList"],
+  });
   const [addSubreddit] = useMutation(ADD_SUBREDDIT);
   const {
     register,
@@ -68,7 +70,7 @@ function PostBox() {
           },
         });
         console.log(newPost);
-        window.location.reload();
+        // window.location.reload();
       } else {
         //use existing subreddit
         console.log("Using existing subreddit");

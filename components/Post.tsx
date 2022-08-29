@@ -10,11 +10,21 @@ import {
 import Avatar from "./Avatar";
 import TimeAgo from "react-timeago";
 import Link from "next/link";
+import { DotSpinner } from "@uiball/loaders";
+
 type Props = {
   post: Post;
 };
 
 function Post({ post }: Props) {
+  if (!post) {
+    return (
+      <div className="w-full flex items-center justify-center p-10 text-xl">
+        <DotSpinner size={50} color="#ff4501" />
+      </div>
+    );
+  }
+
   return (
     <Link href={`/post/${post.id}`}>
       <div

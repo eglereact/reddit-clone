@@ -43,10 +43,9 @@ export const GET_ALL_POST = gql`
   }
 `;
 
-
 export const GET_ALL_POST_BY_TOPIC = gql`
-  query MyQuery($topic:String!) {
-    getPostListByTopic(topic:$topic) {
+  query MyQuery($topic: String!) {
+    getPostListByTopic(topic: $topic) {
       body
       created_at
       id
@@ -78,15 +77,9 @@ export const GET_ALL_POST_BY_TOPIC = gql`
 `;
 
 export const GET_POST_BY_POST_ID = gql`
-  query MyQuery($post_id:ID!) {
-    getPostByPostId(post_id:$post_id) {
+  query MyQuery($post_id: ID!) {
+    getPostByPostId(post_id: $post_id) {
       body
-      created_at
-      id
-      image
-      title
-      username
-      subreddit_id
       comments {
         post_id
         text
@@ -94,6 +87,12 @@ export const GET_POST_BY_POST_ID = gql`
         id
         created_at
       }
+      created_at
+      id
+      image
+      title
+      username
+      subreddit_id
       subreddit {
         created_at
         id

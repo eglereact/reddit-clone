@@ -10,6 +10,18 @@ export const GET_SUBREDDIT_BY_TOPIC = gql`
   }
 `;
 
+export const GET_ALL_VOTES_BY_POST_ID= gql`
+  query MyQuery($post_id: ID!) {
+    getVotesByPostId(post_id: $post_id) {
+      id
+      post_id
+      created_at
+      upvote
+      username
+    }
+  }
+`;
+
 export const GET_ALL_POST = gql`
   query MyQuery {
     getPostList {

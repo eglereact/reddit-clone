@@ -54,8 +54,6 @@ function PostPage() {
 
   const post: Post = data?.getPostByPostId;
 
-  console.log(post.comments.text);
-
   return (
     <div className="mx-auto my-7 max-w-5xl">
       <Post post={post} />
